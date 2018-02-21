@@ -1,0 +1,78 @@
+{
+  "930d8838-ddba-11e6-bf26-cec0c932ce01": {
+    "uuid":"930d8838-ddba-11e6-bf26-cec0c932ce01",
+    "name":"Shallow water 1",
+    "desc":"Set the alarm on if the speed is greater than 5knt and the depth is less than 4.5m",
+    "conditions":{"all": [
+      {
+        "fact": "/vessels/self/navigation/speedThroughWater/value",
+        "operator": "greaterThan",
+        "value": 5,
+        "scales": 1.0,
+        "unit": "knot"
+      },
+      {
+        "fact": "/vessels/self/environment/depth/belowTransducer/value",
+        "operator": "greaterThan",
+        "value": -4.5,
+        "scale": 1.0,
+        "units": "m"
+      }
+
+    ]
+    },
+    "events":[{
+      "uuid": "1d21a07c-e270-11e6-bf01-fe55135034f3",
+      "name":"Shallow water",
+      "desc":"Activate an alert if the depth is lower than 4.5 meters and the speed is higher than 5 knt",
+      "type":"popup",
+      "params":{
+        "span": 30000,
+        "timeout": 15000,
+        "title": "Shallow water!",
+        "message":"You are in a shallow water area, reduce your speed to 5knt or less.",
+        "alarm": true
+      }
+    }]
+  },
+  "b5660928-e24c-11e6-bf01-fe55135034f3": {
+    "uuid":"b5660928-e24c-11e6-bf01-fe55135034f3",
+    "name":"Heavy wind 1",
+    "desc":"Set the alarm on if the speed of the wind is more than 20knts from NE",
+    "conditions":{"all": [
+      {
+        "fact": "/vessels/self/environment/wind/directionTrue/value",
+        "operator": "greaterThanInclusive",
+        "value": 35,
+        "units": "deg"
+      },
+      {
+        "fact": "/vessels/self/environment/wind/directionTrue/value",
+        "operator": "lessThanInclusive",
+        "value": 55,
+        "units": "deg"
+      },
+      {
+        "fact": "/vessels/self/environment/wind/speedTrue/value",
+        "operator": "greaterThanInclusive",
+        "value": 20.0,
+        "units": "knot"
+      }
+
+    ]
+    },
+    "events":[{
+      "uuid": "ee91264c-e26f-11e6-bf01-fe55135034f3",
+      "name": "Heavy Winds",
+      "desc": "Activate an alert if the winds are strong blowing in the NE sector",
+      "type":"popup",
+      "params":{
+        "span": 30000,
+        "timeout": 15000,
+        "title": "Heavy winds",
+        "message":"Heavy winds from NE!",
+        "alarm": true
+      }
+    }]
+  }
+}
