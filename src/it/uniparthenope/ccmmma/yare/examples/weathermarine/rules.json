@@ -1,0 +1,28 @@
+{
+  "930d8838-ddba-11e6-bf26-cec0c932ce01": {
+    "uuid":"930d8838-ddba-11e6-bf26-cec0c932ce01",
+    "name":"Concentration alert",
+    "desc":"Set the alarm on if the concentration overcame a treshold.",
+    "conditions":{"all": [
+      {
+        "fact": "/places/VET001/conc/10m/value",
+        "operator": "greaterThan",
+        "value": 500,
+        "scales": 1.0,
+        "unit": "number"
+      }
+    ]
+    },
+    "events":[{
+      "uuid": "1d21a07c-e270-11e6-bf01-fe55135034f3",
+      "name":"High concentration",
+      "desc":"Activate if concentration overcame the treshold",
+      "type":"email",
+      "params":{
+        "to": "raffaele.montella@uniparthenope.it",
+        "subject": "Concentration alert!",
+        "message":"Check the area VET001 at the time %s"
+      }
+    }]
+  }
+}
